@@ -2,12 +2,19 @@ package invoiceservice;
 
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class InvoiceServiceTest {
+    CabInvoiceGenerator cabInvoiceGenerator = null;
+
+    @Before
+    public void setUp() throws Exception {
+        cabInvoiceGenerator = new CabInvoiceGenerator();
+    }
+
     @Test
     public void givenDistanceAndTime_ShouldReturnTotalFare(){
-        CabInvoiceGenerator cabInvoiceGenerator = new CabInvoiceGenerator();
         double distance = 2.0;
         int time = 5;
         double fare = cabInvoiceGenerator.calculateFare(distance, time);
@@ -16,7 +23,6 @@ public class InvoiceServiceTest {
 
     @Test
     public void givenLessDistanceOrTime_ShouldReturnMinFare(){
-        CabInvoiceGenerator cabInvoiceGenerator = new CabInvoiceGenerator();
         double distance = 0.1;
         int time = 1;
         double fare = cabInvoiceGenerator.calculateFare(distance, time);
@@ -25,7 +31,6 @@ public class InvoiceServiceTest {
 
     @Test
     public void givenMultipleRides_ShouldReturnTotalFare(){
-        CabInvoiceGenerator cabInvoiceGenerator = new CabInvoiceGenerator();
         Ride[] rides = {new Ride(2.0, 5),
                 new Ride(0.1, 1)
         };
